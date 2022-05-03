@@ -1,10 +1,13 @@
 import { LoadingButton } from "@mui/lab";
-import { Box, Container, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { teal } from "@mui/material/colors";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Input from "./StyledComponents/Input";
+import { AuthBox, AuthContainer } from "./StyledComponents/Styles";
+import { Login } from "@mui/icons-material";
 
-export default function Authentication() {
+export default function SignUp() {
   // const intialState = {
   //   firstName: null,
   //   email: null,
@@ -23,43 +26,31 @@ export default function Authentication() {
 
   return (
     <div>
-      <Container
-        maxWidth="sm"
-        sx={{
-          height: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <Box
-          sx={{
-            flex: "1",
-            height: "50%",
-            padding: "0.5rem",
-          }}
-        >
-          <Typography
-            textAlign="center"
-            color={teal[600]}
-            mb={3}
-            variant="h3"
-            component="h3"
-          >
-            STORE
-          </Typography>
+      <AuthContainer maxWidth="sm">
+        <AuthBox>
+          <Link to="/">
+            <Typography
+              textAlign="center"
+              color={teal[600]}
+              mb={3}
+              variant="h3"
+              component="h3"
+            >
+              STORE
+            </Typography>
+          </Link>
+
           <Box component="form" onSubmit={() => handleSubmit()}>
             <Stack spacing={2}>
               <Typography textAlign="center" variant="h5" component="h5">
-                Sign Up
+                Login
               </Typography>
-              <Input props={{ field: "Name", type: "text" }} />
               <Input props={{ field: "Email", type: "email" }} />
               <Input props={{ field: "Password", type: "password" }} />
-              <Input props={{ field: "Confirm Password", type: "password" }} />
               <LoadingButton
                 loading={loading}
                 onClick={handleClick}
+                endIcon={<Login />}
                 loadingPosition="end"
                 variant="contained"
                 sx={{
@@ -67,12 +58,16 @@ export default function Authentication() {
                   "&:hover": { backgroundColor: teal[700] },
                 }}
               >
-                Sign Up
+                Login
               </LoadingButton>
+              <Typography textAlign="end" variant="p" component="p">
+                Don't have an account? &nbsp;
+                <Link to="/auth/signup">Sign up</Link>
+              </Typography>
             </Stack>
           </Box>
-        </Box>
-      </Container>
+        </AuthBox>
+      </AuthContainer>
     </div>
   );
 }

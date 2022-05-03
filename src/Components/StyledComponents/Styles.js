@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core";
+import { Box, Container, styled } from "@mui/material";
 import { teal } from "@mui/material/colors";
 
 export const TextFieldStyles = makeStyles((theme) => ({
@@ -76,3 +77,25 @@ export const navRoutes = {
   a: { color: teal[600], textDecoration: "underline" },
   mt: 4,
 };
+
+export const AuthContainer = styled(Container)({
+  height: "100vh",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+});
+
+export const AuthBox = styled(Box)({
+  flex: "1",
+  height: "50%",
+  padding: "0.5rem",
+});
+
+export const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: "flex-end",
+}));

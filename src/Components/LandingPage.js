@@ -1,6 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./HomePage";
 import Navbar from "./Navbar";
+import NewCollection from "./NewCollections";
+import Shop from "./Shop";
 
 export default function LandingPage() {
   return (
@@ -8,9 +10,9 @@ export default function LandingPage() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/newcollection" element={<p>new collection content</p>} />
+        <Route path="/shop" element={<Shop />} />
 
-        <Route path="/shop" element={<p>shop content</p>} />
+        <Route path="/newcollection" element={<NewCollection/>} />
       </Routes>
     </>
   );

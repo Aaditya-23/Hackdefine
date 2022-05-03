@@ -10,22 +10,32 @@ import {
 import { ShoppingCart, FavoriteBorder } from "@mui/icons-material/";
 import { teal } from "@mui/material/colors";
 import SearchBar from "./StyledComponents/SearchBar";
+import { Link } from "react-router-dom";
+import CustomDrawer from "./CustomDrawer";
 
 export default function Navbar() {
   return (
     <AppBar
       className="Navbar"
-      sx={{ position: "sticky", backgroundColor: "#EAECEE", pt: 0.5 }}
+      sx={{ position: "sticky", backgroundColor: "#EAECEE" }}
     >
       <Toolbar
         sx={{
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
+          padding: "5px !important ",
         }}
       >
-        <Typography variant="h4" component="h5" sx={{ color: teal[600] }}>
-          STORE
+        <Typography
+          variant="h4"
+          component="div"
+          sx={{ display: "flex", alignItems: "center" }}
+        >
+          <CustomDrawer />
+          <Link to="/" style={{ color: teal[600] }}>
+            STORE
+          </Link>
         </Typography>
 
         <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -50,7 +60,9 @@ export default function Navbar() {
               "&:hover": { backgroundColor: teal[700] },
             }}
           >
-            LOGIN
+            <Link to="/auth/signin" style={{ color: "white" }}>
+              LOGIN
+            </Link>
           </Button>
         </Box>
       </Toolbar>

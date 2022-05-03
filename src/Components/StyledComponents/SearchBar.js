@@ -3,8 +3,8 @@ import { TextFieldStyles, AutocompleteStyles } from "./Styles";
 
 export default function SearchBar() {
   const data = [
-    { label: "sup F" },
-    { label: "niga F" },
+    { label: "sup " },
+    { label: "nigga " },
     { label: "Hitler" },
     { label: "Benz" },
     { label: "grills" },
