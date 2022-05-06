@@ -12,13 +12,11 @@ import {
   CardActions,
   CardContent,
   Checkbox,
-  Divider,
   IconButton,
   Rating,
   Typography,
 } from "@mui/material";
-import { indigo, pink, red, teal } from "@mui/material/colors";
-import { useState } from "react";
+import { teal } from "@mui/material/colors";
 
 import Imgix from "react-imgix";
 
