@@ -58,9 +58,6 @@ export default function HomePage() {
           <Typography variant="p" component="p">
             <Link to="/newcollection">New Collection</Link>
           </Typography>
-          <Typography variant="p" component="p">
-            <Link to="/products">Product</Link>
-          </Typography>
         </Stack>
       </Box>
 

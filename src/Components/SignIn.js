@@ -8,48 +8,60 @@ import { AuthBox, AuthContainer } from "./StyledComponents/Styles";
 import { Login } from "@mui/icons-material";
 
 export default function SignUp() {
-  // const intialState = {
-  //   firstName: null,
-  //   email: null,
-  //   password: null,
-  //   confirmPassword: null,
-  // };
+  const intialState = {
+    Email: null,
+    Password: null,
+  };
 
-  // const [formData, setFormData] = useState(intialState);
+  const [formData, setFormData] = useState(intialState);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {};
-  // const handleChange = (e) => {};
-  const handleClick = (e) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     setLoading(true);
+    console.log(formData);
+  };
+
+  const handleChange = (e) => {
+    setFormData((prevData) => {
+      prevData[e.target.name] = e.target.value;
+      return prevData;
+    });
   };
 
   return (
     <div>
       <AuthContainer maxWidth="sm">
         <AuthBox>
-          <Link to="/">
-            <Typography
-              textAlign="center"
-              color={teal[600]}
-              mb={3}
-              variant="h3"
-              component="h3"
-            >
+          <Typography
+            textAlign="center"
+            color={teal[600]}
+            mb={3}
+            variant="h3"
+            component="h3"
+          >
+            <Link to="/" style={{ color: teal[600] }}>
               STORE
-            </Typography>
-          </Link>
+            </Link>{" "}
+          </Typography>
 
-          <Box component="form" onSubmit={() => handleSubmit()}>
+          <Box
+            component="form"
+            id="login-form"
+            onSubmit={(e) => handleSubmit(e)}
+          >
             <Stack spacing={2}>
               <Typography textAlign="center" variant="h5" component="h5">
                 Login
               </Typography>
-              <Input props={{ field: "Email", type: "email" }} />
-              <Input props={{ field: "Password", type: "password" }} />
+              <Input props={{ field: "Email", type: "email", handleChange }} />
+              <Input
+                props={{ field: "Password", type: "password", handleChange }}
+              />
               <LoadingButton
+                form="login-form"
+                type="submit"
                 loading={loading}
-                onClick={handleClick}
                 endIcon={<Login />}
                 loadingPosition="end"
                 variant="contained"

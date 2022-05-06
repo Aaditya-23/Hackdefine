@@ -2,8 +2,20 @@ import { Route, Routes } from "react-router-dom";
 import SignUp from "./SignUp";
 import LandingPage from "./LandingPage";
 import SignIn from "./SignIn";
+import { useEffect } from "react";
+import axios from "axios";
 
 function App() {
+  useEffect(() => {
+    const getData = async () => {
+      const data = await axios.get(
+        process.env.REACT_APP_API_URL + "product-list"
+      );
+      console.log(data);
+    };
+    getData();
+  }, []);
+
   return (
     <Routes>
       <Route path="/*" element={<LandingPage />} />

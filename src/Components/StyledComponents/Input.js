@@ -3,7 +3,7 @@ import { TextFieldStyles } from "./Styles";
 
 export default function Input({ props }) {
   const styleTextField = TextFieldStyles();
-
+  const { handleChange } = props;
   return (
     <TextField
       classes={styleTextField}
@@ -12,7 +12,9 @@ export default function Input({ props }) {
       label={props.field}
       variant="outlined"
       color="success"
+      name={props.field.replaceAll(" ", "")}
       type={props.type}
+      onChange={(e) => handleChange(e)}
     />
   );
 }
