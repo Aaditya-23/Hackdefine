@@ -21,37 +21,42 @@ export default function Carousel() {
   const data = [
     {
       url: "https://bit.ly/3F5HDD7",
-      prod: "Monument",
+      prod: "Watch",
       price: 999,
     },
     {
-      url: "https://bit.ly/3KvqdRb",
-      prod: "Monument",
-      price: 983749,
-    },
-    {
-      url: "https://bit.ly/3KvqdRb",
-      prod: "Monument",
+      url: "https://bit.ly/3F5HDD7",
+      prod: "Watch",
       price: 999,
     },
     {
-      url: "https://bit.ly/3KvqdRb",
-      prod: "Monument",
+      url: "https://bit.ly/3F5HDD7",
+      prod: "Watch",
       price: 999,
     },
     {
-      url: "https://bit.ly/3KvqdRb",
-      prod: "Monument",
+      url: "https://bit.ly/3F5HDD7",
+      prod: "Watch",
       price: 999,
     },
     {
-      url: "https://bit.ly/3KvqdRb",
-      prod: "Monument",
+      url: "https://bit.ly/3F5HDD7",
+      prod: "Watch",
       price: 999,
     },
     {
-      url: "https://bit.ly/3KvqdRb",
-      prod: "Monument",
+      url: "https://bit.ly/3F5HDD7",
+      prod: "Watch",
+      price: 999,
+    },
+    {
+      url: "https://bit.ly/3F5HDD7",
+      prod: "Watch",
+      price: 999,
+    },
+    {
+      url: "https://bit.ly/3F5HDD7",
+      prod: "Watch",
       price: 999,
     },
   ];
