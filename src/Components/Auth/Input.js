@@ -1,19 +1,17 @@
 import { TextField } from "@mui/material";
-import { TextFieldStyles } from "./Styles";
+import { inputField } from "./Styles";
 
 export default function Input({ props }) {
-  const styleTextField = TextFieldStyles();
   const { handleChange } = props;
   return (
     <TextField
-      classes={styleTextField}
       required
       id={props.field}
-      label={props.field}
+      label={props.field[0].toUpperCase() + props.field.slice(1)}
       variant="outlined"
-      color="success"
       name={props.field.replaceAll(" ", "")}
       type={props.type}
+      sx={{ ...inputField }}
       onChange={(e) => handleChange(e)}
     />
   );

@@ -7,13 +7,20 @@ import {
   List,
   ListItem,
   ListItemText,
+  styled,
   useTheme,
 } from "@mui/material";
-import { teal } from "@mui/material/colors";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import SearchBar from "./StyledComponents/SearchBar";
-import { DrawerHeader } from "./StyledComponents/Styles";
+import SearchBar from "../SearchBar/SearchBar";
+
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  padding: theme.spacing(0, 1),
+  ...theme.mixins.toolbar,
+  justifyContent: "flex-end",
+}));
 
 export default function CustomDrawer() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,12 +35,12 @@ export default function CustomDrawer() {
 
   const list = () => (
     <Box role="presentation">
-      <DrawerHeader sx={{ bgcolor: teal[700] }}>
+      <DrawerHeader sx={{ bgcolor: "#181316" }}>
         <IconButton onClick={() => setIsOpen(false)}>
           {theme.direction === "ltr" ? (
-            <ChevronLeft sx={{ color: "white" }} />
+            <ChevronLeft sx={{ color: "#DEDEE4" }} fontSize="large" />
           ) : (
-            <ChevronRight sx={{ color: "white" }} />
+            <ChevronRight sx={{ color: "#DEDEE4" }} fontSize="large" />
           )}
         </IconButton>
       </DrawerHeader>
@@ -50,22 +57,23 @@ export default function CustomDrawer() {
           <SearchBar />
         </ListItem>
       </List>
-      <Divider />
-      <List>
-        <ListItem button></ListItem>
-      </List>
     </Box>
   );
 
   return (
     <>
       <IconButton
-        sx={{ color: teal[600], display: { sm: "none" } }}
+        sx={{ color: "#DEDEE4", display: { sm: "none" } }}
         onClick={() => setIsOpen(true)}
       >
-        <Menu />
+        <Menu fontSize="large" />
       </IconButton>
-      <Drawer variant="persistent" anchor="left" open={isOpen}>
+      <Drawer
+        sx={{ "& .MuiPaper-root": { bgcolor: "#4B5A67" } }}
+        variant="persistent"
+        anchor="left"
+        open={isOpen}
+      >
         {list()}
       </Drawer>
     </>
