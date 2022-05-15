@@ -21,5 +21,6 @@ export const Text = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  textAlign: "center",
   transition: "all 0.2s ease-in-out",
 };

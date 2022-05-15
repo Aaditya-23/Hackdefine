@@ -1,11 +1,11 @@
 import {
   AppBar,
+  Badge,
   Box,
-  Button,
-  IconButton,
   Toolbar,
   Tooltip,
   Typography,
+  Zoom,
 } from "@mui/material";
 import { ShoppingCart, FavoriteBorder } from "@mui/icons-material/";
 import SearchBar from "../SearchBar/SearchBar";
@@ -13,13 +13,17 @@ import { Link } from "react-router-dom";
 import CustomDrawer from "../CustomDrawer/CustomDrawer";
 
 import MyLogo from "../../Assets/Images/MyLogo.png";
+import { useState } from "react";
 
 export default function Navbar() {
+  const [wishlistCount, setWishlistCount] = useState(0);
+  const [cartCount, setCartCount] = useState(0);
+
   return (
     <AppBar
       className="Navbar"
       sx={{
-        position: "fixed",
+        position: "sticky",
         backgroundColor: "#4B5A67",
       }}
     >
@@ -62,29 +66,24 @@ export default function Navbar() {
             <SearchBar />
           </Box>
 
-          <Tooltip title="Cart" placement="bottom-end">
-            <IconButton>
+          <Tooltip
+            title="Wishlist"
+            sx={{ mr: 2 }}
+            placement="bottom"
+            TransitionComponent={Zoom}
+          >
+            <Badge color="secondary" badgeContent={wishlistCount}>
+              <Box component={Link} to="/shop/wishlist">
+                <FavoriteBorder sx={{ color: "#DEDEE4" }} />
+              </Box>
+            </Badge>
+          </Tooltip>
+
+          <Tooltip title="Cart" placement="bottom" TransitionComponent={Zoom}>
+            <Box component={Link} to="/user/cart">
               <ShoppingCart sx={{ color: "#DEDEE4" }} />
-            </IconButton>
+            </Box>
           </Tooltip>
-          <Tooltip title="Wishlist" sx={{ mr: 1 }} placement="bottom-end">
-            <IconButton>
-              <FavoriteBorder sx={{ color: "#DEDEE4" }} />
-            </IconButton>
-          </Tooltip>
-          <Link to="/auth/signin" style={{ color: "white" }}>
-            <Button
-              variant="contained"
-              sx={{
-                fontWeight: 600,
-                letterSpacing: 1,
-                backgroundColor: "#4B5A67",
-                "&:hover": { backgroundColor: "hsl(208, 16%, 33%)" },
-              }}
-            >
-              Login
-            </Button>
-          </Link>
         </Box>
       </Toolbar>
     </AppBar>

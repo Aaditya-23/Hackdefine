@@ -22,7 +22,7 @@ export default function ToCategories() {
       >
         <Paper
           component={Link}
-          to="/categories"
+          to="/shop/categories"
           elevate={10}
           sx={{ ...linkButton }}
         >

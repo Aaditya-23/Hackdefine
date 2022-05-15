@@ -1,4 +1,10 @@
-import { Menu, ChevronLeft, ChevronRight } from "@mui/icons-material";
+import {
+  Menu,
+  ChevronLeft,
+  ChevronRight,
+  GitHub,
+  LinkedIn,
+} from "@mui/icons-material";
 import {
   Box,
   Divider,
@@ -7,35 +13,37 @@ import {
   List,
   ListItem,
   ListItemText,
+  Stack,
   styled,
+  Tooltip,
+  Typography,
   useTheme,
+  Zoom,
 } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
+import UserActions from "../UserActions/UserActions";
+import { socialProfiles } from "./Styles";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
-  justifyContent: "flex-end",
+  justifyContent: "space-between",
 }));
 
 export default function CustomDrawer() {
   const [isOpen, setIsOpen] = useState(false);
   const theme = useTheme();
 
-  const GenURL = (text) => {
-    let url = "/";
-    if (text === "Home") return url;
-
-    return url + text.toLowerCase().replaceAll(" ", "");
-  };
-
   const list = () => (
     <Box role="presentation">
       <DrawerHeader sx={{ bgcolor: "#181316" }}>
+        <Typography variant="h6" component="h6" sx={{ color: "white" }}>
+          NILE
+        </Typography>
         <IconButton onClick={() => setIsOpen(false)}>
           {theme.direction === "ltr" ? (
             <ChevronLeft sx={{ color: "#DEDEE4" }} fontSize="large" />
@@ -44,28 +52,89 @@ export default function CustomDrawer() {
           )}
         </IconButton>
       </DrawerHeader>
+
       <Divider />
+
       <List>
-        {["Home", "Shop", "New Collection"].map((text, index) => (
-          <ListItem button key={index} onClick={() => setIsOpen(false)}>
-            <Link to={GenURL(text)} style={{ width: "100%" }}>
-              <ListItemText primary={text} sx={{ color: "black" }} />
-            </Link>
-          </ListItem>
-        ))}
-        <ListItem button key={"Searchbar"}>
+        <ListItem key={"user-actions"} onClick={() => setIsOpen(false)}>
+          <UserActions />
+        </ListItem>
+      </List>
+
+      <Divider />
+
+      <List>
+        <ListItem button onClick={() => setIsOpen(false)}>
+          <Box component={Link} to="/" style={{ width: "100%" }}>
+            <ListItemText primary={"Home"} sx={{ color: "black" }} />
+          </Box>
+        </ListItem>
+        <ListItem button onClick={() => setIsOpen(false)}>
+          <Box component={Link} to="/shop" style={{ width: "100%" }}>
+            <ListItemText primary={"Shop"} sx={{ color: "black" }} />
+          </Box>
+        </ListItem>
+        <ListItem button onClick={() => setIsOpen(false)}>
+          <Box
+            component={Link}
+            to="/shop/newReleases"
+            style={{ width: "100%" }}
+          >
+            <ListItemText primary={"New Releases"} sx={{ color: "black" }} />
+          </Box>
+        </ListItem>
+        <ListItem button onClick={() => setIsOpen(false)}>
+          <Box component={Link} to="/shop/categories" style={{ width: "100%" }}>
+            <ListItemText primary={"Categories"} sx={{ color: "black" }} />
+          </Box>
+        </ListItem>
+        <ListItem button>
           <SearchBar />
         </ListItem>
       </List>
+
+      <Divider />
+
+      <List>
+        <ListItem button onClick={() => setIsOpen(false)}>
+          <Box component={Link} to="/user/myorders" style={{ width: "100%" }}>
+            <ListItemText primary={"My Orders"} sx={{ color: "black" }} />
+          </Box>
+        </ListItem>
+      </List>
+
+      <Stack
+        direction="row"
+        justifyContent="center"
+        spacing={4}
+        sx={{ ...socialProfiles }}
+      >
+        <Box
+          onClick={() => {
+            window.location.href = "https://github.com/Aaditya-23/Hackdefine";
+          }}
+        >
+          <Tooltip title="Github" placement="top" TransitionComponent={Zoom}>
+            <GitHub sx={{ color: "white" }} />
+          </Tooltip>
+        </Box>
+        <Box
+          onClick={() => {
+            window.location.href =
+              "https://www.linkedin.com/in/aaditya-verma-523069224";
+          }}
+        >
+          <Tooltip title="Linked In" placement="top" TransitionComponent={Zoom}>
+            <LinkedIn sx={{ color: "white" }} />
+          </Tooltip>
+        </Box>
+      </Stack>
     </Box>
   );
 
   return (
     <>
-      <IconButton
-        sx={{ color: "#DEDEE4", display: { sm: "none" } }}
-        onClick={() => setIsOpen(true)}
-      >
+      <IconButton sx={{ color: "#DEDEE4" }} onClick={() => setIsOpen(true)}>
         <Menu fontSize="large" />
       </IconButton>
       <Drawer

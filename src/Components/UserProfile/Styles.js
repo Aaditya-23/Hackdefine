@@ -1,21 +1,44 @@
-export const AuthContainer = {
-  height: "100vh",
-  width: "100vw",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  bgcolor: "#4B5A67"
-};
-
-export const AuthBox = {
-  minWidth: { xs: 300, sm: 500 },
-  p: 2,
+export const container = {
+  mt: 3,
+  minWidth: "100vw",
   display: "flex",
   flexDirection: "column",
-  gap: 5,
   alignItems: "center",
-  background: "linear-gradient(to bottom left, #181316 30%, #4B5A67 30%)",
-  color: "white",
+  justifyContent: "center",
+  gap: 10,
+};
+
+export const userAvatar = {
+  position: "relative",
+};
+
+export const fileIcon = {
+  position: "absolute",
+  height: "100%",
+  width: "100%",
+  zIndex: 1,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  bgcolor: "black",
+  borderRadius: "50%",
+  opacity: 0,
+  transition: "opacity 0.2s ease-out",
+  "&:hover": {
+    opacity: 1,
+  },
+};
+
+export const details = {
+  minWidth: "50vw",
+  display: "flex",
+  flexDirection: "column",
+  gap: 2,
+};
+
+export const inlineStyle = {
+  display: "flex",
+  gap: 3,
 };
 
 export const inputField = {

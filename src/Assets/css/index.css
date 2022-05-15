@@ -1,11 +1,8 @@
 body {
   margin: 0;
   padding: 0;
-  height: 100vh;
-  width: 100vw;
   font-family: "Exo 2", sans-serif;
-  background: linear-gradient(to top left, #4b5a67, #dedee4);
-  background-repeat: no-repeat;
+  background: linear-gradient(#4b5a67, #4b5a67);
 }
 
 body::-webkit-scrollbar {

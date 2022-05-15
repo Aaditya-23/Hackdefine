@@ -1,15 +1,8 @@
-export const FixedContainer = {
-  mt: 1,
-  width: "100vw",
-  position: "fixed",
-  bottom: 0,
-  overflow: "scroll",
-  "&::-webkit-scrollbar": {
-    display: "none",
-  },
+export const Container = {
   display: "flex",
   flexDirection: "column",
   gap: 10,
+  bgcolor: "#4B5A67",
 };
 
 export const svgContainer = {

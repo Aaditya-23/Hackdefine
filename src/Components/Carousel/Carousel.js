@@ -1,52 +1,16 @@
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
-import { Box, IconButton, Paper, Typography } from "@mui/material";
+import { Box, IconButton, Paper } from "@mui/material";
 import { carousel, scrollWindow } from "./Styles";
 import ProductCard from "../ProductCard/ProductCard";
+import { useSelector } from "react-redux";
 
 export default function Carousel() {
-  const data = [
-    {
-      url: "https://bit.ly/37UxxsC",
-      prod: "shoes",
-      price: "100",
-      rating: 3,
-    },
-    {
-      url: "https://bit.ly/3LzzHMJ",
-      prod: "Neeman's Ivory Cream Sneakers",
-      price: "2999",
-      rating: 51423,
-    },
-    {
-      url: "https://bit.ly/3LBzxEy",
-      prod: "Timex Water Resistant Watch",
-      price: "12000",
-      rating: 41142,
-    },
-    {
-      url: "https://bit.ly/3kGYySN",
-      prod: "Black Stainless Steel Police Watches ",
-      price: "7800",
-      rating: 3,
-    },
-    {
-      url: "https://bit.ly/3vZvw7r",
-      prod: "Calvin Klein Men's T-shirt",
-      price: "5000",
-      rating: 34,
-    },
-    {
-      url: "https://swoo.sh/3L04b9A",
-      prod: "Jordan Max Aura 3",
-      price: "6495",
-      rating: 3,
-    },
-  ];
+  const { newReleases } = useSelector((state) => state.products);
 
   return (
     <Box sx={{ ...carousel }}>
       <Box className="scrollWindow" sx={{ ...scrollWindow }}>
-        {data.map((item, index) => {
+        {newReleases.map((item, index) => {
           return <ProductCard key={index} props={{ item }} />;
         })}
       </Box>

@@ -6,12 +6,16 @@ import App from "./Components/App";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import UserReducer from "./Features/UserSlice";
-import { Theme } from "./Components/StyledComponents/Theme";
+import ProductsReducer from "./Features/ProductsSlice";
+import WishlistReducer from "./Features/WishlistSlice"
+import { Theme } from "./Components/Theme";
 import { ThemeProvider } from "@mui/material/styles";
 
 const store = configureStore({
   reducer: {
     user: UserReducer,
+    products: ProductsReducer,
+    wishlist: WishlistReducer
   },
 });
 

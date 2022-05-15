@@ -23,7 +23,7 @@ export default function SearchBar() {
     <Autocomplete
       classes={StyleAutocomplete}
       sx={{ width: 300 }}
-      id="search-bar"
+      // id="search-bar"
       options={data}
       renderInput={(params) => (
         <TextField
