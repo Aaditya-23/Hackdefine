@@ -19,7 +19,7 @@ import {
   Zoom,
 } from "@mui/material";
 import { teal } from "@mui/material/colors";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateWishlist } from "../../Features/WishlistSlice";
 import { updateCart } from "../../Features/CartSlice";
@@ -168,7 +168,7 @@ export default function ProductCard({ props }) {
           )}
         </CardActions>
       </Card>
-      <Toast props={{ flash, handleClose, type:"success" }} />
+      <Toast props={{ flash, handleClose, type: "success" }} />
     </>
   );
 }
