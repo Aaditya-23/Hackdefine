@@ -83,12 +83,13 @@ export default function CustomDrawer() {
             <ListItemText primary={"New Releases"} sx={{ color: "black" }} />
           </Box>
         </ListItem>
+
         <ListItem button onClick={() => setIsOpen(false)}>
           <Box component={Link} to="/shop/categories" style={{ width: "100%" }}>
             <ListItemText primary={"Categories"} sx={{ color: "black" }} />
           </Box>
         </ListItem>
-        <ListItem button>
+        <ListItem sx={{ display: { sm: "none" } }}>
           <SearchBar />
         </ListItem>
       </List>

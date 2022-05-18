@@ -7,7 +7,8 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import UserReducer from "./Features/UserSlice";
 import ProductsReducer from "./Features/ProductsSlice";
-import WishlistReducer from "./Features/WishlistSlice"
+import WishlistReducer from "./Features/WishlistSlice";
+import CartReducer from "./Features/CartSlice";
 import { Theme } from "./Components/Theme";
 import { ThemeProvider } from "@mui/material/styles";
 
@@ -15,7 +16,8 @@ const store = configureStore({
   reducer: {
     user: UserReducer,
     products: ProductsReducer,
-    wishlist: WishlistReducer
+    wishlist: WishlistReducer,
+    cart: CartReducer,
   },
 });
 

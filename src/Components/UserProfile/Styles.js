@@ -1,5 +1,6 @@
 export const container = {
   mt: 3,
+  mb: 3,
   minWidth: "100vw",
   display: "flex",
   flexDirection: "column",
@@ -30,44 +31,16 @@ export const fileIcon = {
 };
 
 export const details = {
-  minWidth: "50vw",
+  width: { xs: "90vw", sm: "auto" },
   display: "flex",
   flexDirection: "column",
-  gap: 2,
-};
-
-export const inlineStyle = {
-  display: "flex",
   gap: 3,
 };
 
 export const inputField = {
-  "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-    borderColor: "hsl(37, 90%, 61%)",
-    borderWidth: "1.8px",
-  },
-  "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-    borderColor: "hsl(37, 90%, 41%)",
-  },
-  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-    borderColor: "hsl(37, 90%, 41%)",
-  },
-  "& .MuiOutlinedInput-input": {
-    color: "hsl(37, 90%, 61%)",
-  },
-  "&:hover .MuiOutlinedInput-input": {
-    color: "hsl(37, 90%, 41%)",
-  },
-  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input": {
-    color: "hsl(37, 90%, 41%)",
-  },
-  "& .MuiInputLabel-outlined": {
-    color: "hsl(37, 90%, 61%)",
-  },
-  "&:hover .MuiInputLabel-outlined": {
-    color: "hsl(37, 90%, 61%)",
-  },
-  "& .MuiInputLabel-outlined.Mui-focused": {
-    color: "hsl(37, 90%, 61%)",
-  },
+  "& .MuiInputLabel-root": { color: "white !important" },
+  "& .MuiInput-root::before": { borderColor: "white !important" },
+  "& .MuiInput-root::after": { borderColor: "white" },
+  "& .MuiInput-root": { color: "white" },
+  "& svg": { color: "black" },
 };

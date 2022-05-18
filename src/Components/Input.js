@@ -1,5 +1,4 @@
 import { TextField } from "@mui/material";
-import { inputField } from "./Styles";
 
 export default function Input({ props }) {
   const { handleChange } = props;
@@ -11,7 +10,9 @@ export default function Input({ props }) {
       variant="outlined"
       name={props.field.replaceAll(" ", "")}
       type={props.type}
-      sx={{ ...inputField }}
+      sx={{
+        flex: 1,
+      }}
       onChange={(e) => handleChange(e)}
     />
   );

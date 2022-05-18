@@ -24,7 +24,7 @@ export default function CategoryCard({ props }) {
     <Box
       id={props.type}
       component={Link}
-      to={`/categories/${props.type}`}
+      to={`/shop/categories:${props.type}`}
       sx={{ ...CategoriesCard, ...hide }}
     >
       <Picture>

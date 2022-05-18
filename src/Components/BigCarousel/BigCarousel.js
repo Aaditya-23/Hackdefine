@@ -1,5 +1,4 @@
-import { Box, Typography } from "@mui/material";
-import { motion } from "framer-motion";
+import { Box } from "@mui/material";
 import { useEffect } from "react";
 import { actions, container, image, title, toLink, view } from "./Styles";
 import sweaters from "../../Assets/Images/Sweaters.jpg";

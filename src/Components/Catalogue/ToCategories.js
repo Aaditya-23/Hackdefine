@@ -26,7 +26,10 @@ export default function ToCategories() {
           elevate={10}
           sx={{ ...linkButton }}
         >
-          <Box component="div" sx={{ fontSize: { sm: "1.8em", lg: "2.2em" } }}>
+          <Box
+            component="div"
+            sx={{ fontSize: { xs: "2.2em", sm: "1.8em", lg: "2.2em" } }}
+          >
             CATEGORIES
           </Box>
 

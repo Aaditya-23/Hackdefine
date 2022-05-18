@@ -20,7 +20,9 @@ export const container = {
   alignSelf: "center",
   width: "98vw",
   display: "flex",
+  flexDirection: { xs: "column", sm: "row" },
   justifyContent: "space-between",
+  alignItems: "center",
   gap: 2,
   mb: 2,
   overflow: "hidden",
@@ -29,7 +31,7 @@ export const container = {
 export const cardContainer = {
   boxSizing: "border-box",
   p: 1,
-  width: { sm: 250, md: 300 },
+  width: { xs: 350, sm: 250, md: 300 },
   height: 350,
   backgroundColor: "hsl(120, 1%, 10%)",
   color: "white",

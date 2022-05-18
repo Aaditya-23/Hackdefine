@@ -6,14 +6,35 @@ import { container, wrapper } from "./Styles";
 
 export default function Shop() {
   const { Products } = useSelector((state) => state.products);
+  const { wishlist } = useSelector((state) => state.wishlist);
+  const { cart } = useSelector((state) => state.cart);
 
   return (
     <Box sx={{ ...container }}>
       <BreadCrumbs />
 
       <Box sx={{ ...wrapper }}>
-        {Products.map((item, index) => {
-          return <ProductCard key={index} props={{ item }} />;
+         {Products.map((item, index) => {
+          let isChecked = false;
+
+          const prod = cart.filter((cartItem) => {
+            if (cartItem._id === item._id) return true;
+
+            return false;
+          });
+
+          if (wishlist.includes(item._id)) isChecked = true;
+
+          return (
+            <ProductCard
+              key={index}
+              props={{
+                item,
+                isChecked,
+                cartItem: prod[0] || { _id: null, quantity: 0 },
+              }}
+            />
+          );
         })}
       </Box>
     </Box>

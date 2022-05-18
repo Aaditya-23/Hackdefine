@@ -1,11 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
   user: null,
   token: null,
 };
-
 
 export const createUser = async (formData) => {
   try {
@@ -34,6 +33,30 @@ export const createSession = async (formData) => {
     return { isCreated: false, response };
   }
 };
+
+export const updateUser = createAsyncThunk(
+  "user/updateUser",
+  async (formData, { getState }) => {
+    try {
+      const { token } = getState().user;
+
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API_URL}user/updateUser`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      return { data };
+    } catch (error) {
+      console.log("Internal Server Error");
+      return { data: null };
+    }
+  }
+);
 
 export const getUser = async (token) => {
   try {
@@ -66,6 +89,13 @@ const UserSlice = createSlice({
       storage.removeItem("token");
       storage.removeItem("user");
       return { token: null, user: null };
+    },
+  },
+  extraReducers: {
+    [updateUser.fulfilled]: (state, actions) => {
+      const { data } = actions.payload;
+      if (!data) return state;
+      return { ...state, user: data.user };
     },
   },
 });

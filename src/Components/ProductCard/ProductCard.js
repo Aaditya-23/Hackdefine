@@ -20,32 +20,20 @@ import {
 } from "@mui/material";
 import { teal } from "@mui/material/colors";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { updateWishlist } from "../../Features/WishlistSlice";
+import { updateCart } from "../../Features/CartSlice";
+import ItemCount from "../ItemCount/ItemCount";
 
 export default function ProductCard({ props }) {
   const label = { inputProps: { "aria-label": "Add to wishlist" } };
 
-  const { item } = props;
+  const { item, isChecked, cartItem } = props;
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.wishlist);
 
   const prodName =
     item.productName.slice(0, 20).trimEnd() +
     (item.productName.length > 20 ? " ..." : "");
-
-  const [checked, setChecked] = useState(false);
-  const handleChange = (e) => {
-    const { productid } = e.target.dataset;
-    dispatch(updateWishlist(productid));
-  };
-
-  useEffect(() => {
-    if (state.wishlist.includes(item._id)) {
-      setChecked(true);
-    } else setChecked(false);
-  }, [state, item._id]);
 
   return (
     <Card
@@ -54,6 +42,7 @@ export default function ProductCard({ props }) {
         width: 288,
         maxWidth: 288,
         minWidth: 288,
+        minHeight: 319.2,
         bgcolor: "black",
         color: "white",
       }}
@@ -114,7 +103,7 @@ export default function ProductCard({ props }) {
       >
         <Box>
           <Tooltip
-            title={checked ? "Remove From Wishlist" : "Add To Wishlist"}
+            title={isChecked ? "Remove From Wishlist" : "Add To Wishlist"}
             TransitionComponent={Zoom}
             placement="bottom"
           >
@@ -122,10 +111,9 @@ export default function ProductCard({ props }) {
               {...label}
               icon={<FavoriteBorder sx={{ color: "#D81B60" }} />}
               checkedIcon={<Favorite sx={{ color: "#E91E63" }} />}
-              checked={checked}
-              onChange={handleChange}
-              inputProps={{
-                "data-productid": `${item._id}`,
+              checked={isChecked}
+              onClick={() => {
+                dispatch(updateWishlist(item._id));
               }}
             />
           </Tooltip>
@@ -139,16 +127,24 @@ export default function ProductCard({ props }) {
             </IconButton>
           </Tooltip>
         </Box>
-        <Button
-          variant="contained"
-          endIcon={<ShoppingCart />}
-          sx={{
-            bgcolor: "#4B5A67",
-            "&:hover": { bgcolor: teal[700] },
-          }}
-        >
-          add to cart
-        </Button>
+        {(cartItem.quantity > 0 && (
+          <ItemCount props={{ count: cartItem.quantity, _id: cartItem._id }} />
+        )) || (
+          <Button
+            variant="contained"
+            endIcon={<ShoppingCart />}
+            sx={{
+              bgcolor: "#4B5A67",
+              "&:hover": { bgcolor: teal[700] },
+            }}
+            onClick={() => {
+              const { _id } = item;
+              dispatch(updateCart({ _id, quantity: 1 }));
+            }}
+          >
+            add to cart
+          </Button>
+        )}
       </CardActions>
     </Card>
   );

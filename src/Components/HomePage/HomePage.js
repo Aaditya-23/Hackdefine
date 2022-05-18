@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import BigCarousel from "../BigCarousel/BigCarousel";
 import Carousel from "../Carousel/Carousel";
 import Catalogue from "../Catalogue/Catalogue";
-import SocialMedia from "../SocialMedia/SocialMedia";
+import Footer from "../Footer/Footer";
 import { Container, newReleases } from "./Styles";
 
 export default function HomePage() {
@@ -17,7 +17,7 @@ export default function HomePage() {
         <Carousel />
       </Box>
       <Catalogue />
-      <SocialMedia />
+      <Footer />
     </Box>
   );
 }

@@ -10,7 +10,7 @@ function ToAuth() {
     <Box sx={{ ...toAuth }}>
       <Button
         component={Link}
-        to="/auth/signin"
+        to="/auth/login"
         variant="contained"
         sx={{ flex: 1 }}
       >
@@ -50,7 +50,7 @@ export default function UserActions() {
             bgcolor: "black",
           }}
           alt={user.name}
-          src={user.avatarUrl}
+          src={`${process.env.REACT_APP_SERVER_URL + user.avatarUrl}`}
         >
           {user?.firstName[0].toUpperCase()}
         </Avatar>
@@ -73,7 +73,6 @@ export default function UserActions() {
               size="small"
               sx={{ mt: 1 }}
               variant="contained"
-              to="/user/profile"
               color="error"
               onClick={handleClick}
             >

@@ -8,6 +8,8 @@ import { container, wrapper } from "./Styles";
 export default function UserWishlist() {
   const { wishlist } = useSelector((state) => state.wishlist);
   const { Products } = useSelector((state) => state.products);
+  const { cart } = useSelector((state) => state.cart);
+
   const [wishlistedItems, setWishlistedItems] = useState([]);
 
   useEffect(() => {
@@ -25,7 +27,22 @@ export default function UserWishlist() {
 
       <Box sx={{ ...wrapper }}>
         {wishlistedItems.map((item, index) => {
-          return <ProductCard key={index} props={{ item }} />;
+          const prod = cart.filter((cartItem) => {
+            if (cartItem._id === item._id) return true;
+
+            return false;
+          });
+
+          return (
+            <ProductCard
+              key={index}
+              props={{
+                item,
+                isChecked: true,
+                cartItem: prod[0] || { _id: null, quantity: 0 },
+              }}
+            />
+          );
         })}
 
         {wishlistedItems.length === 0 && (

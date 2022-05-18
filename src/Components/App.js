@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import { Box } from "@mui/material";
 import { useEffect } from "react";
-import SignUp from "./Auth/SignUp";
-import SignIn from "./Auth/SignIn";
+import SignUp from "./SignUp/SignUp";
+import SignIn from "./SignIn/SignIn";
 import HomePage from "./HomePage/HomePage";
 import Navbar from "./Navbar/Navbar";
 import Shop from "./Shop/Shop";
@@ -18,6 +18,10 @@ import NewReleases from "./NewReleases/NewReleases";
 import Categories from "./Categories/Categories";
 import UserWishlist from "./UserWishlist/UserWishlist";
 import { destroyWishlist, getWishlist } from "../Features/WishlistSlice";
+import ProductPage from "./ProductPage/ProductPage";
+import UserCart from "./UserCart/UserCart";
+import { getCart } from "../Features/CartSlice";
+import CategoryPage from "./CategoryPage/CategoryPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +50,7 @@ function App() {
     dispatch(fetchNewReleases());
     dispatch(fetchCategories());
     dispatch(getWishlist(token));
+    dispatch(getCart(token));
     reportUser(token);
   }, [dispatch]);
 
@@ -93,6 +98,16 @@ function App() {
         />
 
         <Route
+          path="/shop/categories:id"
+          element={
+            <>
+              <Navbar />
+              <CategoryPage />
+            </>
+          }
+        />
+
+        <Route
           path="/shop/wishlist"
           element={
             <>
@@ -102,14 +117,34 @@ function App() {
           }
         />
 
+        <Route
+          path="/shop:id"
+          element={
+            <>
+              <Navbar />
+              <ProductPage />
+            </>
+          }
+        />
+
         <Route path="/auth/signup" element={<SignUp />} />
-        <Route path="/auth/signin" element={<SignIn />} />
+        <Route path="/auth/login" element={<SignIn />} />
         <Route
           path="/user/profile"
           element={
             <>
               <Navbar />
               <UserProfile />
+            </>
+          }
+        />
+
+        <Route
+          path="/user/cart"
+          element={
+            <>
+              <Navbar />
+              <UserCart />
             </>
           }
         />

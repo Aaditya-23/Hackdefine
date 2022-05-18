@@ -13,11 +13,20 @@ import { Link } from "react-router-dom";
 import CustomDrawer from "../CustomDrawer/CustomDrawer";
 
 import MyLogo from "../../Assets/Images/MyLogo.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function Navbar() {
   const [wishlistCount, setWishlistCount] = useState(0);
   const [cartCount, setCartCount] = useState(0);
+
+  const { wishlist } = useSelector((state) => state.wishlist);
+  const { cart } = useSelector((state) => state.cart);
+
+  useEffect(() => {
+    setWishlistCount(wishlist.length);
+    setCartCount(cart.length);
+  }, [wishlist, cart]);
 
   return (
     <AppBar
@@ -61,7 +70,7 @@ export default function Navbar() {
           </Box>
         </Box>
 
-        <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Box sx={{ display: "flex", alignItems: "center", mr: 1, gap: 1 }}>
           <Box sx={{ display: { xs: "none", sm: "block" }, mr: 1 }}>
             <SearchBar />
           </Box>
@@ -72,17 +81,19 @@ export default function Navbar() {
             placement="bottom"
             TransitionComponent={Zoom}
           >
-            <Badge color="secondary" badgeContent={wishlistCount}>
+            <Badge color="primary" badgeContent={wishlistCount}>
               <Box component={Link} to="/shop/wishlist">
                 <FavoriteBorder sx={{ color: "#DEDEE4" }} />
               </Box>
             </Badge>
           </Tooltip>
 
-          <Tooltip title="Cart" placement="bottom" TransitionComponent={Zoom}>
-            <Box component={Link} to="/user/cart">
-              <ShoppingCart sx={{ color: "#DEDEE4" }} />
-            </Box>
+          <Tooltip color="primary" title="Cart" placement="bottom" TransitionComponent={Zoom}>
+            <Badge badgeContent={cartCount}>
+              <Box component={Link} to="/user/cart">
+                <ShoppingCart sx={{ color: "#DEDEE4" }} />
+              </Box>
+            </Badge>
           </Tooltip>
         </Box>
       </Toolbar>
