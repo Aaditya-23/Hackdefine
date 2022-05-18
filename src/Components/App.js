@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { Box } from "@mui/material";
 import { useEffect } from "react";
 import SignUp from "./SignUp/SignUp";
@@ -7,7 +7,7 @@ import HomePage from "./HomePage/HomePage";
 import Navbar from "./Navbar/Navbar";
 import Shop from "./Shop/Shop";
 import UserProfile from "./UserProfile/UserProfile";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { destroyUser, getUser, initialiseUser } from "../Features/UserSlice";
 import {
   fetchProducts,
@@ -20,11 +20,12 @@ import UserWishlist from "./UserWishlist/UserWishlist";
 import { destroyWishlist, getWishlist } from "../Features/WishlistSlice";
 import ProductPage from "./ProductPage/ProductPage";
 import UserCart from "./UserCart/UserCart";
-import { getCart } from "../Features/CartSlice";
+import { destroyCart, getCart } from "../Features/CartSlice";
 import CategoryPage from "./CategoryPage/CategoryPage";
 
 function App() {
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
     const storage = window.localStorage;
@@ -41,8 +42,9 @@ function App() {
           })
         );
       } else {
-        destroyUser();
-        destroyWishlist();
+        dispatch(destroyUser());
+        dispatch(destroyWishlist());
+        dispatch(destroyCart());
       }
     };
 
@@ -111,8 +113,12 @@ function App() {
           path="/shop/wishlist"
           element={
             <>
-              <Navbar />
-              <UserWishlist />
+              {(!user && <Navigate to="/auth/login" replace={true} />) || (
+                <>
+                  <Navbar />
+                  <UserWishlist />
+                </>
+              )}
             </>
           }
         />
@@ -133,8 +139,12 @@ function App() {
           path="/user/profile"
           element={
             <>
-              <Navbar />
-              <UserProfile />
+              {(!user && <Navigate to="/auth/login" replace={true} />) || (
+                <>
+                  <Navbar />
+                  <UserProfile />
+                </>
+              )}
             </>
           }
         />
@@ -143,8 +153,12 @@ function App() {
           path="/user/cart"
           element={
             <>
-              <Navbar />
-              <UserCart />
+              {(!user && <Navigate to="/auth/login" replace={true} />) || (
+                <>
+                  <Navbar />
+                  <UserCart />
+                </>
+              )}
             </>
           }
         />

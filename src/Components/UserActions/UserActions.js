@@ -1,6 +1,7 @@
 import { Avatar, Box, Button, Divider, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { destroyCart } from "../../Features/CartSlice";
 import { destroyUser } from "../../Features/UserSlice";
 import { destroyWishlist } from "../../Features/WishlistSlice";
 import { actionButtons, actions, container, toAuth } from "./Styles";
@@ -37,6 +38,7 @@ export default function UserActions() {
   const handleClick = () => {
     dispatch(destroyUser());
     dispatch(destroyWishlist());
+    dispatch(destroyCart());
   };
 
   return (

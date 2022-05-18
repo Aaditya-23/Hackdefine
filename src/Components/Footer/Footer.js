@@ -1,20 +1,19 @@
-import { Box, Link, Stack, Tooltip, Typography, Zoom } from "@mui/material";
-
+import { Box, Stack, Tooltip, Typography, Zoom } from "@mui/material";
 import { GitHub, LinkedIn } from "@mui/icons-material";
-
+import { Link } from "react-router-dom";
 import { container } from "./Styles";
 
 export default function Footer() {
   return (
     <Box sx={{ ...container }}>
       <Stack gap={2}>
-        <Typography variant="p" component={Link} to="#">
+        <Typography variant="p" component={Link} to="/shop">
           Shop
         </Typography>
-        <Typography variant="p" component={Link} to="#">
+        <Typography variant="p" component={Link} to="/shop/newreleases">
           New releases
         </Typography>
-        <Typography variant="p" component={Link} to="#">
+        <Typography variant="p" component={Link} to="/shop/categories">
           categories
         </Typography>
         <Typography variant="p" component={Link} to="#">

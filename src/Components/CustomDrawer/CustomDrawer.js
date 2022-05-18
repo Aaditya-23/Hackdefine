@@ -98,7 +98,7 @@ export default function CustomDrawer() {
 
       <List>
         <ListItem button onClick={() => setIsOpen(false)}>
-          <Box component={Link} to="/user/myorders" style={{ width: "100%" }}>
+          <Box component={Link} to="#" style={{ width: "100%" }}>
             <ListItemText primary={"My Orders"} sx={{ color: "black" }} />
           </Box>
         </ListItem>
@@ -139,7 +139,7 @@ export default function CustomDrawer() {
         <Menu fontSize="large" />
       </IconButton>
       <Drawer
-        sx={{ "& .MuiPaper-root": { bgcolor: "#4B5A67" } }}
+        sx={{ "& .MuiPaper-root": { bgcolor: "#4B5A67", minWidth: "3in" } }}
         variant="persistent"
         anchor="left"
         open={isOpen}

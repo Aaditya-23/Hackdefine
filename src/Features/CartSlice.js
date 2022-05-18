@@ -43,7 +43,7 @@ export const updateCart = createAsyncThunk(
     } catch (error) {
       console.log("Internal Server Error");
       const { cart } = error.response.data;
-      return { cart };
+      return { cart: cart || [] };
     }
   }
 );
@@ -51,7 +51,11 @@ export const updateCart = createAsyncThunk(
 const CartSlice = createSlice({
   name: "cart",
   initialState,
-  reducers: {},
+  reducers: {
+    destroyCart: (state) => {
+      return { ...state, cart: [] };
+    },
+  },
   extraReducers: {
     [getCart.fulfilled]: (state, action) => {
       const { cart } = action.payload;
@@ -65,5 +69,7 @@ const CartSlice = createSlice({
     },
   },
 });
+
+export const { destroyCart } = CartSlice.actions;
 
 export default CartSlice.reducer;

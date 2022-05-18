@@ -10,7 +10,7 @@ const SlideTransition = (props) => {
 };
 
 export default function Toast({ props }) {
-  const { flash, handleClose } = props;
+  const { flash, handleClose, type } = props;
 
   return (
     <Snackbar
@@ -22,7 +22,7 @@ export default function Toast({ props }) {
       key={"Slide Transition"}
     >
       <Alert
-        severity="error"
+        severity={type || "error"}
         sx={{ width: "100%", textTransform: "capitalize" }}
       >
         {flash.message + "!"}

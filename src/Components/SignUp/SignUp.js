@@ -5,10 +5,11 @@ import { Link, useNavigate } from "react-router-dom";
 import Input from "../Input";
 import { Google, Login } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
-import { createUser, initialiseUser } from "../../Features/UserSlice";
-import { getWishlist } from "../../Features/WishlistSlice";
+import { createUser, destroyUser, initialiseUser } from "../../Features/UserSlice";
+import { destroyWishlist, getWishlist } from "../../Features/WishlistSlice";
 import Toast from "../Toast/Toast";
 import { AuthBox, container, heading } from "./Styles";
+import { destroyCart } from "../../Features/CartSlice";
 
 export default function SignUp() {
   const intialState = {
@@ -34,6 +35,9 @@ export default function SignUp() {
     setLoading(true);
     const { isCreated, response } = await createUser(formData);
     const storage = window.localStorage;
+    dispatch(destroyUser());
+    dispatch(destroyWishlist());
+    dispatch(destroyCart());
     storage.clear();
 
     if (isCreated) {
@@ -121,7 +125,7 @@ export default function SignUp() {
               already have an account?
             </Typography>
             <Box component={Link} to="/auth/login" sx={{ color: "#2196F3" }}>
-              Sign In
+              Login
             </Box>
           </Box>
         </Paper>

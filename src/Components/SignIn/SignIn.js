@@ -6,9 +6,9 @@ import Input from "../Input";
 import { AuthBox, container, heading } from "./Styles";
 import { Google, Login } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
-import { createSession, initialiseUser } from "../../Features/UserSlice";
-import { getWishlist } from "../../Features/WishlistSlice";
-import { getCart } from "../../Features/CartSlice";
+import { createSession, destroyUser, initialiseUser } from "../../Features/UserSlice";
+import { destroyWishlist, getWishlist } from "../../Features/WishlistSlice";
+import { destroyCart, getCart } from "../../Features/CartSlice";
 import Toast from "../Toast/Toast";
 
 export default function SignUp() {
@@ -29,6 +29,9 @@ export default function SignUp() {
     setLoading(true);
     const { isCreated, response } = await createSession(formData);
     const storage = window.localStorage;
+    dispatch(destroyUser());
+    dispatch(destroyWishlist());
+    dispatch(destroyCart());
     storage.clear();
 
     if (isCreated) {
@@ -90,7 +93,7 @@ export default function SignUp() {
               "&:hover": { bgcolor: "black" },
             }}
           >
-            Sign Up
+            Sign In
           </LoadingButton>
 
           <Button
@@ -110,8 +113,8 @@ export default function SignUp() {
             >
               don't have an account?
             </Typography>
-            <Box component={Link} to="/auth/login" sx={{ color: "#2196F3" }}>
-              Register
+            <Box component={Link} to="/auth/signup" sx={{ color: "#2196F3" }}>
+              Sign Up
             </Box>
           </Box>
         </Paper>
