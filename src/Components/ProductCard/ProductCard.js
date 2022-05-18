@@ -32,7 +32,6 @@ export default function ProductCard({ props }) {
 
   const { item, isChecked, cartItem } = props;
   const dispatch = useDispatch();
-  const location = useLocation();
 
   const [flash, setFlash] = useState({ open: false, message: "" });
   const handleClose = () => {
