@@ -1,7 +1,8 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Exo 2", sans-serif;
+  background: linear-gradient(#4b5a67, #4b5a67);
 }
 
 body::-webkit-scrollbar {
@@ -12,21 +13,11 @@ a {
   text-decoration: none;
 }
 
-.homePage {
-  background-image: url("../Images/backgroundImage.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+.zoomIn {
+  transform: scale(1.05);
 }
 
-.homePage::-webkit-scrollbar {
-  display: none;
+.sharpen {
+  backdrop-filter: none !important;
+  opacity: 0.3;
 }
-
-.officeBackground {
-  background-image: url("../Images/officeImage.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
